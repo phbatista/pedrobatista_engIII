@@ -5,30 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42cb3aa0-edce-4948-9d13-f706be3db8eb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controle/EncodingFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/negocio/impl/ValidarDadosCliente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/negocio/impl/ValidarDependentes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/negocio/impl/ValidarEndereco.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/editar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controle/CtrlCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controle/CtrlCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controle/Fachada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controle/Fachada.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/persistencia/impl/ClienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistencia/impl/ClienteDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/consultar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/consultar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/editar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/editar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/controle/CtrlCliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controle/CtrlCliente.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controle/Fachada.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controle/Fachada.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/negocio/impl/GerarLog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/negocio/impl/GerarLog.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/persistencia/impl/ClienteDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/persistencia/impl/ClienteDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/controle/CtrlCliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/controle/CtrlCliente.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/controle/Fachada.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/controle/Fachada.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/persistencia/impl/ClienteDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/persistencia/impl/ClienteDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/consultar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII/consultar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/editar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII/editar.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +188,7 @@
       <option name="presentableId" value="Default" />
       <updated>1751483764994</updated>
       <workItem from="1751483770926" duration="903000" />
-      <workItem from="1751484714706" duration="6399000" />
+      <workItem from="1751484714706" duration="6936000" />
     </task>
     <servers />
   </component>

@@ -146,13 +146,12 @@ public class ClienteDAO implements IDAO {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs = null; // Adicionado para obter IDs
+        ResultSet rs = null;
 
         try {
             conn = ConnectionFactory.getConnection();
             conn.setAutoCommit(false);
 
-            // ... (O código de UPDATE para estado, cidade, endereço e cliente continua igual)
             String sqlEstado = "UPDATE estados SET nome=?, uf=? WHERE id=?";
             pstmt = conn.prepareStatement(sqlEstado);
             pstmt.setString(1, estado.getDescricao());
@@ -185,22 +184,18 @@ public class ClienteDAO implements IDAO {
             pstmt.executeUpdate();
             pstmt.close();
 
-            // ---------- INÍCIO DA LÓGICA DE DEPENDENTES ----------
-
-            // 5. Apaga os dependentes antigos associados a este cliente
             String sqlDeleteDependentes = "DELETE FROM dependentes WHERE cliente_id=?";
             pstmt = conn.prepareStatement(sqlDeleteDependentes);
             pstmt.setInt(1, cliente.getId());
             pstmt.executeUpdate();
             pstmt.close();
 
-            // 6. Insere os novos dependentes (lógica quase idêntica à do método salvar)
             if (cliente.getDeps() != null && !cliente.getDeps().isEmpty()) {
                 String sqlDependente = "INSERT INTO dependentes (nome, cpf, dt_cadastro, cliente_id, parentesco_id) VALUES (?, ?, ?, ?, ?)";
 
                 for (Dependente dep : cliente.getDeps()) {
                     Parentesco p = dep.getParentesco();
-                    // Garante que o parentesco existe e obtém o ID
+
                     String sqlParentesco = "INSERT INTO parentescos (descricao) VALUES (?) ON CONFLICT (descricao) DO NOTHING";
                     pstmt = conn.prepareStatement(sqlParentesco);
                     pstmt.setString(1, p.getDescricao());
@@ -217,7 +212,6 @@ public class ClienteDAO implements IDAO {
                     rs.close();
                     pstmt.close();
 
-                    // Insere o dependente
                     pstmt = conn.prepareStatement(sqlDependente);
                     pstmt.setString(1, dep.getNome());
                     pstmt.setString(2, dep.getCpf());
@@ -228,7 +222,6 @@ public class ClienteDAO implements IDAO {
                     pstmt.close();
                 }
             }
-            // ---------- FIM DA LÓGICA DE DEPENDENTES ----------
 
             conn.commit();
 
@@ -250,22 +243,19 @@ public class ClienteDAO implements IDAO {
         }
     }
 
-    // Dentro da classe persistencia.impl.ClienteDAO
 
     @Override
     public void excluir(EntidadeDominio entidade) {
         if (!(entidade instanceof Cliente)) return;
         Cliente cliente = (Cliente) entidade;
 
-        // Graças ao "ON DELETE CASCADE" no banco, só precisamos apagar o cliente.
-        // O banco se encarregará de apagar o endereço e os dependentes associados.
         String sql = "DELETE FROM clientes WHERE id=?";
         Connection conn = null;
         PreparedStatement pstmt = null;
 
         try {
             conn = ConnectionFactory.getConnection();
-            conn.setAutoCommit(true); // Para operações simples, autocommit pode ser usado.
+            conn.setAutoCommit(true);
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, cliente.getId());
             pstmt.executeUpdate();
@@ -284,9 +274,8 @@ public class ClienteDAO implements IDAO {
 
     @Override
     public List<EntidadeDominio> consultar(EntidadeDominio entidade) {
-        Cliente clienteBusca = (Cliente) entidade; // Faz o cast para Cliente
+        Cliente clienteBusca = (Cliente) entidade;
 
-        // A base da query é a mesma
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ");
         sql.append("cli.id as cliente_id, cli.nome as cliente_nome, cli.cpf, cli.credito, cli.dt_cadastro as cliente_dt_cadastro, ");
@@ -298,12 +287,9 @@ public class ClienteDAO implements IDAO {
         sql.append("JOIN cidades c ON e.cidade_id = c.id ");
         sql.append("JOIN estados est ON c.estado_id = est.id ");
 
-        // ---------- INÍCIO DA CORREÇÃO ----------
-        // Adiciona o filtro WHERE se um ID for fornecido no objeto de busca
         if (clienteBusca.getId() > 0) {
             sql.append("WHERE cli.id = ? ");
         }
-        // ---------- FIM DA CORREÇÃO ----------
 
         sql.append("ORDER BY cli.id");
 
@@ -316,17 +302,14 @@ public class ClienteDAO implements IDAO {
             conn = ConnectionFactory.getConnection();
             pstmt = conn.prepareStatement(sql.toString());
 
-            // ---------- INÍCIO DA CORREÇÃO ----------
-            // Define o parâmetro do ID no PreparedStatement, se necessário
             if (clienteBusca.getId() > 0) {
                 pstmt.setInt(1, clienteBusca.getId());
             }
-            // ---------- FIM DA CORREÇÃO ----------
 
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                // ... (O resto do código para montar os objetos Cliente, Endereco, etc., continua igual)
+
                 Estado estado = new Estado(rs.getString("estado_nome"), rs.getString("uf"));
                 estado.setId(rs.getInt("estado_id"));
 
@@ -336,23 +319,42 @@ public class ClienteDAO implements IDAO {
                 Endereco endereco = new Endereco(rs.getString("logradouro"), rs.getString("cep"), cidade);
                 endereco.setId(rs.getInt("endereco_id"));
 
-                // Monta o objeto Cliente
                 Cliente cliente = new Cliente(
                         rs.getString("cliente_nome"),
                         rs.getString("cpf"),
                         rs.getDouble("credito"),
                         endereco,
-                        null // A lista de dependentes será carregada em uma consulta separada
+                        null
                 );
                 cliente.setId(rs.getInt("cliente_id"));
                 cliente.setDtCadastro(rs.getTimestamp("cliente_dt_cadastro"));
+
+                List<Dependente> dependentes = new ArrayList<>();
+                String sqlDeps = "SELECT d.id, d.nome, d.cpf, d.dt_cadastro, p.descricao as parentesco " +
+                        "FROM dependentes d " +
+                        "JOIN parentescos p ON d.parentesco_id = p.id " +
+                        "WHERE d.cliente_id = ?";
+
+                try (PreparedStatement pstmtDeps = conn.prepareStatement(sqlDeps)) {
+                    pstmtDeps.setInt(1, cliente.getId());
+                    try (ResultSet rsDeps = pstmtDeps.executeQuery()) {
+                        while (rsDeps.next()) {
+                            Parentesco p = new Parentesco(rsDeps.getString("parentesco"));
+                            Dependente dep = new Dependente(rsDeps.getString("nome"), p);
+                            dep.setId(rsDeps.getInt("id"));
+                            dep.setCpf(rsDeps.getString("cpf"));
+                            dep.setDtCadastro(rsDeps.getTimestamp("dt_cadastro"));
+                            dependentes.add(dep);
+                        }
+                    }
+                }
+                cliente.setDeps(dependentes);
 
                 clientes.add(cliente);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            // ... (O seu bloco finally para fechar os recursos continua igual)
         }
         return clientes;
     }

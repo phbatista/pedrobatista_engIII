@@ -98,6 +98,22 @@ public class CtrlCliente extends HttpServlet {
             String cpf = request.getParameter("txtCpf");
             double credito = Double.parseDouble(request.getParameter("txtCredito"));
 
+            String[] nomesDep = request.getParameterValues("txtDepNome");
+            String[] cpfsDep = request.getParameterValues("txtDepCpf");
+            String[] parentescosDep = request.getParameterValues("txtDepParentesco");
+
+            List<Dependente> dependentes = new ArrayList<>();
+            if (nomesDep != null) {
+                for (int i = 0; i < nomesDep.length; i++) {
+                    Parentesco p = new Parentesco(parentescosDep[i]);
+                    Dependente d = new Dependente(nomesDep[i], p);
+                    if (cpfsDep[i] != null && !cpfsDep[i].isEmpty()) {
+                        d.setCpf(cpfsDep[i]);
+                    }
+                    dependentes.add(d);
+                }
+            }
+
             String logradouro = request.getParameter("txtLogradouro");
             String cep = request.getParameter("txtCep");
             String nomeCidade = request.getParameter("txtCidade");
@@ -118,7 +134,7 @@ public class CtrlCliente extends HttpServlet {
             Endereco endereco = new Endereco(logradouro, cep, cidade);
             endereco.setId(enderecoId);
 
-            Cliente cliente = new Cliente(nome, cpf, credito, endereco, null); // Dependentes não são editados neste formulário
+            Cliente cliente = new Cliente(nome, cpf, credito, endereco, dependentes); // Dependentes não são editados neste formulário
             cliente.setId(clienteId);
 
             fachada.alterar(cliente);
