@@ -265,7 +265,6 @@ public class ClienteDAO implements IDAO {
         }
     }
 
-
     @Override
     public List<EntidadeDominio> consultar(EntidadeDominio entidade) {
         Cliente clienteBusca = (Cliente) entidade;

@@ -40,7 +40,7 @@
         </div>
         <div class="form-group">
             <label for="cpf">CPF:</label>
-            <input type="text" id="cpf" name="txtCpf" value="${cliente.cpf}" required>
+            <input type="text" id="cpf" name="txtCpf" value="${cliente.cpf}" required pattern="\d{11}" title="Digite os 11 dígitos do CPF, sem pontos ou traços.">
         </div>
         <div class="form-group">
             <label for="credito">Crédito:</label>
