@@ -25,6 +25,6 @@ public class ValidarDependentes implements IStrategy {
                 }
             }
         }
-        return null; // Sem erros
+        return null;
     }
 }

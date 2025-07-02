@@ -1,4 +1,4 @@
-package domain; // <-- CORRIGIDO
+package domain;
 
 public class Dependente extends Pessoa {
     private Parentesco parentesco;

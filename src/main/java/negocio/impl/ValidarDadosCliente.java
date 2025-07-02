@@ -22,6 +22,6 @@ public class ValidarDadosCliente implements IStrategy {
                 return sb.toString();
             }
         }
-        return null; // Sem erros
+        return null;
     }
 }

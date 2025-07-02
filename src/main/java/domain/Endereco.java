@@ -1,4 +1,4 @@
-package domain; // <-- CORRIGIDO
+package domain;
 
 public class Endereco extends EntidadeDominio {
     private String logradouro;

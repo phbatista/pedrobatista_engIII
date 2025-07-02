@@ -1,4 +1,4 @@
-package negocio.impl; // <-- CORRIGIDO
+package negocio.impl;
 
 import domain.EntidadeDominio;
 import negocio.IStrategy;

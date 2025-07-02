@@ -1,4 +1,4 @@
-package domain; // <-- CORRIGIDO
+package domain;
 
 import java.util.List;
 

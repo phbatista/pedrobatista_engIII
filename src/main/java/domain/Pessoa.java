@@ -1,4 +1,4 @@
-package domain; // <-- CORRIGIDO
+package domain;
 
 public class Pessoa extends EntidadeDominio {
     protected String nome;

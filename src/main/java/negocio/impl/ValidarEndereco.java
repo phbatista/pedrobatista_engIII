@@ -8,7 +8,6 @@ import negocio.IStrategy;
 public class ValidarEndereco implements IStrategy {
     @Override
     public String processar(EntidadeDominio entidade) {
-        // A validação do endereço ocorre no contexto de um Cliente
         if (entidade instanceof Cliente) {
             Endereco endereco = ((Cliente) entidade).getEndereco();
             if (endereco != null) {
@@ -31,6 +30,6 @@ public class ValidarEndereco implements IStrategy {
                 }
             }
         }
-        return null; // Sem erros
+        return null;
     }
 }

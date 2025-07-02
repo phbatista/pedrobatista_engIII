@@ -122,7 +122,14 @@
         <button type="button" onclick="adicionarDependente()">+ Adicionar Dependente</button>
 
         <hr>
-        <button type="submit">Salvar Cliente</button>
+
+        <div style="display: flex; gap: 10px;">
+            <button type="submit">Salvar Cliente</button>
+
+            <a href="CtrlCliente?operacao=consultar" style="padding: 12px 20px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 4px; font-size: 16px;">
+                Ver Clientes
+            </a>
+        </div>
     </form>
 </div>
 
@@ -131,7 +138,7 @@
         const container = document.getElementById('dependentes-container');
         const div = document.createElement('div');
         div.className = 'dependente-item';
-        // HTML que será injetado para cada novo dependente
+
         div.innerHTML = `
             <div class="form-group">
                 <label>Nome do Dependente:</label>

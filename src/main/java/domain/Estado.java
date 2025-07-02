@@ -1,4 +1,4 @@
-package domain; // <-- CORRIGIDO
+package domain;
 
 public class Estado extends EntidadeDominio {
     private String descricao;

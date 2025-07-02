@@ -23,11 +23,9 @@ public class ClienteDAO implements IDAO {
         ResultSet rs = null;
 
         try {
-            // Inicia a transação
             conn = ConnectionFactory.getConnection();
             conn.setAutoCommit(false);
 
-            // 1. Salva o Estado e recupera o ID
             String sqlEstado = "INSERT INTO estados (nome, uf) VALUES (?, ?)";
             pstmt = conn.prepareStatement(sqlEstado, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, estado.getDescricao());
@@ -40,7 +38,6 @@ public class ClienteDAO implements IDAO {
             rs.close();
             pstmt.close();
 
-            // 2. Salva a Cidade e recupera o ID
             String sqlCidade = "INSERT INTO cidades (nome, estado_id) VALUES (?, ?)";
             pstmt = conn.prepareStatement(sqlCidade, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, cidade.getDescricao());
@@ -53,7 +50,6 @@ public class ClienteDAO implements IDAO {
             rs.close();
             pstmt.close();
 
-            // 3. Salva o Endereço e recupera o ID
             String sqlEndereco = "INSERT INTO enderecos (logradouro, cep, cidade_id) VALUES (?, ?, ?)";
             pstmt = conn.prepareStatement(sqlEndereco, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, endereco.getLogradouro());
@@ -67,7 +63,6 @@ public class ClienteDAO implements IDAO {
             rs.close();
             pstmt.close();
 
-            // 4. Salva o Cliente e recupera o ID
             String sqlCliente = "INSERT INTO clientes (nome, cpf, credito, dt_cadastro, endereco_id) VALUES (?, ?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sqlCliente, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, cliente.getNome());
@@ -83,7 +78,6 @@ public class ClienteDAO implements IDAO {
             rs.close();
             pstmt.close();
 
-            // 5. Salva os Dependentes
             if (cliente.getDeps() != null && !cliente.getDeps().isEmpty()) {
                 String sqlDependente = "INSERT INTO dependentes (nome, cpf, dt_cadastro, cliente_id, parentesco_id) VALUES (?, ?, ?, ?, ?)";
 
