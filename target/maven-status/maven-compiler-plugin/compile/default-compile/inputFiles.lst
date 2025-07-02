@@ -1,4 +1,5 @@
 C:\Users\phbat\Desktop\fatec\pedrobatista_engIII\src\main\java\controle\CtrlCliente.java
+C:\Users\phbat\Desktop\fatec\pedrobatista_engIII\src\main\java\controle\EncodingFilter.java
 C:\Users\phbat\Desktop\fatec\pedrobatista_engIII\src\main\java\controle\Fachada.java
 C:\Users\phbat\Desktop\fatec\pedrobatista_engIII\src\main\java\controle\IFachada.java
 C:\Users\phbat\Desktop\fatec\pedrobatista_engIII\src\main\java\domain\Cidade.java
@@ -14,6 +15,9 @@ C:\Users\phbat\Desktop\fatec\pedrobatista_engIII\src\main\java\negocio\impl\Comp
 C:\Users\phbat\Desktop\fatec\pedrobatista_engIII\src\main\java\negocio\impl\GerarLog.java
 C:\Users\phbat\Desktop\fatec\pedrobatista_engIII\src\main\java\negocio\impl\ValidarCpf.java
 C:\Users\phbat\Desktop\fatec\pedrobatista_engIII\src\main\java\negocio\impl\ValidarCredito.java
+C:\Users\phbat\Desktop\fatec\pedrobatista_engIII\src\main\java\negocio\impl\ValidarDadosCliente.java
+C:\Users\phbat\Desktop\fatec\pedrobatista_engIII\src\main\java\negocio\impl\ValidarDependentes.java
+C:\Users\phbat\Desktop\fatec\pedrobatista_engIII\src\main\java\negocio\impl\ValidarEndereco.java
 C:\Users\phbat\Desktop\fatec\pedrobatista_engIII\src\main\java\negocio\IStrategy.java
 C:\Users\phbat\Desktop\fatec\pedrobatista_engIII\src\main\java\persistencia\IDAO.java
 C:\Users\phbat\Desktop\fatec\pedrobatista_engIII\src\main\java\persistencia\impl\ClienteDAO.java

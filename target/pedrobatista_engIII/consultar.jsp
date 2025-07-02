@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
@@ -41,6 +42,7 @@
                         ${cliente.endereco.logradouro}, ${cliente.endereco.cidade.descricao} - ${cliente.endereco.cidade.estado.uf}
                 </td>
                 <td>
+                    <a href="CtrlCliente?operacao=editar&id=${cliente.id}">Editar</a> |
                     <a href="CtrlCliente?operacao=excluir&id=${cliente.id}" onclick="return confirm('Tem certeza que deseja excluir este cliente?');">Excluir</a>
                 </td>
             </tr>

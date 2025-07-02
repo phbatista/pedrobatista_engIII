@@ -140,22 +140,108 @@ public class ClienteDAO implements IDAO {
     public void alterar(EntidadeDominio entidade) {
         if (!(entidade instanceof Cliente)) return;
         Cliente cliente = (Cliente) entidade;
-        String sql = "UPDATE clientes SET nome=?, cpf=?, credito=? WHERE id=?";
+        Endereco endereco = cliente.getEndereco();
+        Cidade cidade = endereco.getCidade();
+        Estado estado = cidade.getEstado();
+
         Connection conn = null;
         PreparedStatement pstmt = null;
+        ResultSet rs = null; // Adicionado para obter IDs
 
         try {
             conn = ConnectionFactory.getConnection();
-            pstmt = conn.prepareStatement(sql);
+            conn.setAutoCommit(false);
+
+            // ... (O código de UPDATE para estado, cidade, endereço e cliente continua igual)
+            String sqlEstado = "UPDATE estados SET nome=?, uf=? WHERE id=?";
+            pstmt = conn.prepareStatement(sqlEstado);
+            pstmt.setString(1, estado.getDescricao());
+            pstmt.setString(2, estado.getUf());
+            pstmt.setInt(3, estado.getId());
+            pstmt.executeUpdate();
+            pstmt.close();
+
+            String sqlCidade = "UPDATE cidades SET nome=? WHERE id=?";
+            pstmt = conn.prepareStatement(sqlCidade);
+            pstmt.setString(1, cidade.getDescricao());
+            pstmt.setInt(2, cidade.getId());
+            pstmt.executeUpdate();
+            pstmt.close();
+
+            String sqlEndereco = "UPDATE enderecos SET logradouro=?, cep=? WHERE id=?";
+            pstmt = conn.prepareStatement(sqlEndereco);
+            pstmt.setString(1, endereco.getLogradouro());
+            pstmt.setString(2, endereco.getCep());
+            pstmt.setInt(3, endereco.getId());
+            pstmt.executeUpdate();
+            pstmt.close();
+
+            String sqlCliente = "UPDATE clientes SET nome=?, cpf=?, credito=? WHERE id=?";
+            pstmt = conn.prepareStatement(sqlCliente);
             pstmt.setString(1, cliente.getNome());
             pstmt.setString(2, cliente.getCpf());
             pstmt.setDouble(3, cliente.getCredito());
-            pstmt.setInt(4, cliente.getId()); // Usa o ID para saber qual cliente alterar
+            pstmt.setInt(4, cliente.getId());
             pstmt.executeUpdate();
+            pstmt.close();
+
+            // ---------- INÍCIO DA LÓGICA DE DEPENDENTES ----------
+
+            // 5. Apaga os dependentes antigos associados a este cliente
+            String sqlDeleteDependentes = "DELETE FROM dependentes WHERE cliente_id=?";
+            pstmt = conn.prepareStatement(sqlDeleteDependentes);
+            pstmt.setInt(1, cliente.getId());
+            pstmt.executeUpdate();
+            pstmt.close();
+
+            // 6. Insere os novos dependentes (lógica quase idêntica à do método salvar)
+            if (cliente.getDeps() != null && !cliente.getDeps().isEmpty()) {
+                String sqlDependente = "INSERT INTO dependentes (nome, cpf, dt_cadastro, cliente_id, parentesco_id) VALUES (?, ?, ?, ?, ?)";
+
+                for (Dependente dep : cliente.getDeps()) {
+                    Parentesco p = dep.getParentesco();
+                    // Garante que o parentesco existe e obtém o ID
+                    String sqlParentesco = "INSERT INTO parentescos (descricao) VALUES (?) ON CONFLICT (descricao) DO NOTHING";
+                    pstmt = conn.prepareStatement(sqlParentesco);
+                    pstmt.setString(1, p.getDescricao());
+                    pstmt.executeUpdate();
+                    pstmt.close();
+
+                    String sqlSelectParentesco = "SELECT id FROM parentescos WHERE descricao = ?";
+                    pstmt = conn.prepareStatement(sqlSelectParentesco);
+                    pstmt.setString(1, p.getDescricao());
+                    rs = pstmt.executeQuery();
+                    if (rs.next()) {
+                        p.setId(rs.getInt("id"));
+                    }
+                    rs.close();
+                    pstmt.close();
+
+                    // Insere o dependente
+                    pstmt = conn.prepareStatement(sqlDependente);
+                    pstmt.setString(1, dep.getNome());
+                    pstmt.setString(2, dep.getCpf());
+                    pstmt.setTimestamp(3, new Timestamp(dep.getDtCadastro().getTime()));
+                    pstmt.setInt(4, cliente.getId());
+                    pstmt.setInt(5, p.getId());
+                    pstmt.executeUpdate();
+                    pstmt.close();
+                }
+            }
+            // ---------- FIM DA LÓGICA DE DEPENDENTES ----------
+
+            conn.commit();
+
         } catch (SQLException e) {
+            try {
+                if (conn != null) conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             e.printStackTrace();
         } finally {
             try {
+                if (rs != null) rs.close();
                 if (pstmt != null) pstmt.close();
                 if (conn != null) conn.close();
             } catch (SQLException e) {
@@ -198,17 +284,28 @@ public class ClienteDAO implements IDAO {
 
     @Override
     public List<EntidadeDominio> consultar(EntidadeDominio entidade) {
-        // Este SQL complexo junta todas as tabelas para trazer os dados completos do cliente.
-        String sql = "SELECT " +
-                "cli.id as cliente_id, cli.nome as cliente_nome, cli.cpf, cli.credito, cli.dt_cadastro as cliente_dt_cadastro, " +
-                "e.id as endereco_id, e.logradouro, e.cep, " +
-                "c.id as cidade_id, c.nome as cidade_nome, " +
-                "est.id as estado_id, est.nome as estado_nome, est.uf " +
-                "FROM clientes cli " +
-                "JOIN enderecos e ON cli.endereco_id = e.id " +
-                "JOIN cidades c ON e.cidade_id = c.id " +
-                "JOIN estados est ON c.estado_id = est.id " +
-                "ORDER BY cli.id";
+        Cliente clienteBusca = (Cliente) entidade; // Faz o cast para Cliente
+
+        // A base da query é a mesma
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT ");
+        sql.append("cli.id as cliente_id, cli.nome as cliente_nome, cli.cpf, cli.credito, cli.dt_cadastro as cliente_dt_cadastro, ");
+        sql.append("e.id as endereco_id, e.logradouro, e.cep, ");
+        sql.append("c.id as cidade_id, c.nome as cidade_nome, ");
+        sql.append("est.id as estado_id, est.nome as estado_nome, est.uf ");
+        sql.append("FROM clientes cli ");
+        sql.append("JOIN enderecos e ON cli.endereco_id = e.id ");
+        sql.append("JOIN cidades c ON e.cidade_id = c.id ");
+        sql.append("JOIN estados est ON c.estado_id = est.id ");
+
+        // ---------- INÍCIO DA CORREÇÃO ----------
+        // Adiciona o filtro WHERE se um ID for fornecido no objeto de busca
+        if (clienteBusca.getId() > 0) {
+            sql.append("WHERE cli.id = ? ");
+        }
+        // ---------- FIM DA CORREÇÃO ----------
+
+        sql.append("ORDER BY cli.id");
 
         List<EntidadeDominio> clientes = new ArrayList<>();
         Connection conn = null;
@@ -217,19 +314,25 @@ public class ClienteDAO implements IDAO {
 
         try {
             conn = ConnectionFactory.getConnection();
-            pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql.toString());
+
+            // ---------- INÍCIO DA CORREÇÃO ----------
+            // Define o parâmetro do ID no PreparedStatement, se necessário
+            if (clienteBusca.getId() > 0) {
+                pstmt.setInt(1, clienteBusca.getId());
+            }
+            // ---------- FIM DA CORREÇÃO ----------
+
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                // Monta o objeto Estado
+                // ... (O resto do código para montar os objetos Cliente, Endereco, etc., continua igual)
                 Estado estado = new Estado(rs.getString("estado_nome"), rs.getString("uf"));
                 estado.setId(rs.getInt("estado_id"));
 
-                // Monta o objeto Cidade
                 Cidade cidade = new Cidade(rs.getString("cidade_nome"), estado);
                 cidade.setId(rs.getInt("cidade_id"));
 
-                // Monta o objeto Endereco
                 Endereco endereco = new Endereco(rs.getString("logradouro"), rs.getString("cep"), cidade);
                 endereco.setId(rs.getInt("endereco_id"));
 
@@ -249,7 +352,7 @@ public class ClienteDAO implements IDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            // Bloco finally para fechar os recursos
+            // ... (O seu bloco finally para fechar os recursos continua igual)
         }
         return clientes;
     }

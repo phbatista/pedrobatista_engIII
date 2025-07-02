@@ -1,6 +1,6 @@
 package controle;
 
-import domain.*; // Importa todas as classes do pacote domain
+import domain.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,57 +29,99 @@ public class CtrlCliente extends HttpServlet {
             response.sendRedirect("CtrlCliente?operacao=consultar");
 
         } else if ("consultar".equals(operacao)) {
-            // A consulta foi movida para o doGet para facilitar o redirecionamento
             List<EntidadeDominio> clientes = fachada.consultar(new Cliente(null, null, 0, null, null));
             request.setAttribute("clientes", clientes);
             request.getRequestDispatcher("/consultar.jsp").forward(request, response);
+
+        } else if ("editar".equals(operacao)) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            Cliente clienteParaBuscar = new Cliente(null, null, 0, null, null);
+            clienteParaBuscar.setId(id);
+
+            List<EntidadeDominio> resultado = fachada.consultar(clienteParaBuscar);
+
+            if (resultado != null && !resultado.isEmpty()) {
+                request.setAttribute("cliente", resultado.get(0));
+                request.getRequestDispatcher("/editar.jsp").forward(request, response);
+            } else {
+                response.sendRedirect("CtrlCliente?operacao=consultar&erro=ClienteNaoEncontrado");
+            }
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String operacao = request.getParameter("operacao");
-
-        // CORREÇÃO APLICADA AQUI:
         IFachada fachada = new Fachada();
 
         if ("salvar".equals(operacao)) {
-            // Dados do Cliente
             String nome = request.getParameter("txtNome");
             String cpf = request.getParameter("txtCpf");
             double credito = Double.parseDouble(request.getParameter("txtCredito"));
 
-            // Dados do Endereço
             String logradouro = request.getParameter("txtLogradouro");
             String cep = request.getParameter("txtCep");
             String nomeCidade = request.getParameter("txtCidade");
             String nomeEstado = request.getParameter("txtEstado");
             String uf = request.getParameter("txtUf");
 
-            // Dados dos Dependentes
             String[] nomesDep = request.getParameterValues("txtDepNome");
             String[] cpfsDep = request.getParameterValues("txtDepCpf");
             String[] parentescosDep = request.getParameterValues("txtDepParentesco");
 
             List<Dependente> dependentes = new ArrayList<>();
+
             if (nomesDep != null) {
                 for (int i = 0; i < nomesDep.length; i++) {
                     Parentesco p = new Parentesco(parentescosDep[i]);
                     Dependente d = new Dependente(nomesDep[i], p);
-                    d.setCpf(cpfsDep[i]);
+
+                    if (cpfsDep[i] != null && !cpfsDep[i].isEmpty()) {
+                        d.setCpf(cpfsDep[i]);
+                    }
                     dependentes.add(d);
                 }
             }
 
-            // Montando os objetos
             Estado estado = new Estado(nomeEstado, uf);
             Cidade cidade = new Cidade(nomeCidade, estado);
             Endereco endereco = new Endereco(logradouro, cep, cidade);
 
             Cliente cliente = new Cliente(nome, cpf, credito, endereco, dependentes);
 
-            // Salva o cliente e redireciona para a tela de consulta
             fachada.salvar(cliente);
+            response.sendRedirect("CtrlCliente?operacao=consultar");
+
+
+        } else if ("alterar".equals(operacao)) {
+            String nome = request.getParameter("txtNome");
+            String cpf = request.getParameter("txtCpf");
+            double credito = Double.parseDouble(request.getParameter("txtCredito"));
+
+            String logradouro = request.getParameter("txtLogradouro");
+            String cep = request.getParameter("txtCep");
+            String nomeCidade = request.getParameter("txtCidade");
+            String nomeEstado = request.getParameter("txtEstado");
+            String uf = request.getParameter("txtUf");
+
+            int clienteId = Integer.parseInt(request.getParameter("id"));
+            int enderecoId = Integer.parseInt(request.getParameter("enderecoId"));
+            int cidadeId = Integer.parseInt(request.getParameter("cidadeId"));
+            int estadoId = Integer.parseInt(request.getParameter("estadoId"));
+
+            Estado estado = new Estado(nomeEstado, uf);
+            estado.setId(estadoId);
+
+            Cidade cidade = new Cidade(nomeCidade, estado);
+            cidade.setId(cidadeId);
+
+            Endereco endereco = new Endereco(logradouro, cep, cidade);
+            endereco.setId(enderecoId);
+
+            Cliente cliente = new Cliente(nome, cpf, credito, endereco, null); // Dependentes não são editados neste formulário
+            cliente.setId(clienteId);
+
+            fachada.alterar(cliente);
             response.sendRedirect("CtrlCliente?operacao=consultar");
 
         } else {

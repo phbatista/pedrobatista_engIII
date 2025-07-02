@@ -4,6 +4,7 @@ domain\Estado.class
 controle\IFachada.class
 domain\Cidade.class
 domain\Log.class
+negocio\impl\ValidarEndereco.class
 controle\CtrlCliente.class
 domain\Dependente.class
 negocio\impl\ComplementarDtCadastro.class
@@ -14,7 +15,10 @@ domain\Pessoa.class
 controle\Fachada.class
 persistencia\impl\ClienteDAO.class
 domain\Parentesco.class
+controle\EncodingFilter.class
 domain\EntidadeDominio.class
 domain\Cliente.class
 negocio\IStrategy.class
+negocio\impl\ValidarDependentes.class
+negocio\impl\ValidarDadosCliente.class
 negocio\impl\GerarLog.class
