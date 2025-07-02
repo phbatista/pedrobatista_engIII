@@ -5,45 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42cb3aa0-edce-4948-9d13-f706be3db8eb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/postgresql-42.7.6.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controle/CtrlCliente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controle/Fachada.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controle/IFachada.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/Log.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/negocio/impl/ComplementarDtCadastro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/negocio/impl/GerarLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/negocio/impl/ValidarCredito.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/persistencia/utils/ConnectionFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/consultar.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pedrobatista_engIII.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/main/domain/Cidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Cidade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/main/domain/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/main/domain/Dependente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Dependente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/main/domain/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Endereco.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/main/domain/EntidadeDominio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/EntidadeDominio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/main/domain/Estado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Estado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/main/domain/Parentesco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Parentesco.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/main/domain/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Pessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/main/negocio/IStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/negocio/IStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/main/negocio/impl/ClienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistencia/impl/ClienteDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/main/negocio/impl/ValidarCpf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/negocio/impl/ValidarCpf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/main/persistencia/IDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistencia/IDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/teste.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/consultar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/consultar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/negocio/impl/GerarLog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/negocio/impl/GerarLog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/controle/CtrlCliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/controle/CtrlCliente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/lib/javax.servlet.jsp.jstl-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/lib/jsp-api-2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/lib/jstl-api-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/lib/servlet-api-2.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/consultar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII/consultar.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jsp File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -192,7 +178,7 @@
       <option name="presentableId" value="Default" />
       <updated>1751483764994</updated>
       <workItem from="1751483770926" duration="903000" />
-      <workItem from="1751484714706" duration="1846000" />
+      <workItem from="1751484714706" duration="4271000" />
     </task>
     <servers />
   </component>
