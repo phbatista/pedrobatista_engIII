@@ -41,25 +41,46 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        button {
+
+        .botoes-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            flex-grow: 1;
             padding: 12px 20px;
-            background-color: #007bff;
             color: white;
             border: none;
             cursor: pointer;
             border-radius: 4px;
             font-size: 16px;
-            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
         }
-        button:hover {
+
+        .btn-principal {
+            background-color: #007bff;
+        }
+        .btn-principal:hover {
             background-color: #0056b3;
         }
-        button[type="button"] {
+
+        .btn-secundario {
+            background-color: #6c757d;
+        }
+        .btn-secundario:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-adicionar {
             background-color: #28a745;
         }
-        button[type="button"]:hover {
+        .btn-adicionar:hover {
             background-color: #218838;
         }
+
         hr {
             border: none;
             border-top: 1px solid #eee;
@@ -119,10 +140,14 @@
         <h3>Dependentes</h3>
         <div id="dependentes-container">
         </div>
-        <button type="button" onclick="adicionarDependente()">+ Adicionar Dependente</button>
+        <button type="button" onclick="adicionarDependente()" class="btn btn-adicionar">+ Adicionar Dependente</button>
 
         <hr>
-        <button type="submit">Salvar Cliente</button>
+
+        <div class="botoes-container">
+            <button type="submit" class="btn btn-principal">Salvar Cliente</button>
+            <a href="CtrlCliente?operacao=consultar" class="btn btn-secundario">Ver Clientes</a>
+        </div>
     </form>
 </div>
 
@@ -131,7 +156,6 @@
         const container = document.getElementById('dependentes-container');
         const div = document.createElement('div');
         div.className = 'dependente-item';
-        // HTML que será injetado para cada novo dependente
         div.innerHTML = `
             <div class="form-group">
                 <label>Nome do Dependente:</label>

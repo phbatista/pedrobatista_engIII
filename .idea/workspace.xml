@@ -10,38 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42cb3aa0-edce-4948-9d13-f706be3db8eb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c7ff098a-a516-406f-95ec-8da9fea7e7fd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c7ff098a-a516-406f-95ec-8da9fea7e7fd.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c7ff098a-a516-406f-95ec-8da9fea7e7fd/storage_v2/_src_/database/db_esiii.2rz5ew/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c7ff098a-a516-406f-95ec-8da9fea7e7fd/storage_v2/_src_/database/db_esiii.2rz5ew/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c7ff098a-a516-406f-95ec-8da9fea7e7fd/storage_v2/_src_/database/db_esiii.2rz5ew/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c7ff098a-a516-406f-95ec-8da9fea7e7fd/storage_v2/_src_/database/db_esiii.2rz5ew/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c7ff098a-a516-406f-95ec-8da9fea7e7fd/storage_v2/_src_/database/db_esiii.2rz5ew/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c7ff098a-a516-406f-95ec-8da9fea7e7fd/storage_v2/_src_/database/db_esiii.2rz5ew/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Cidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Cidade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Dependente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Dependente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Endereco.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/EntidadeDominio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/EntidadeDominio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Estado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Estado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Parentesco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Parentesco.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Pessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/negocio/IStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/negocio/IStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/negocio/impl/ComplementarDtCadastro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/negocio/impl/ComplementarDtCadastro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/negocio/impl/ValidarCpf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/negocio/impl/ValidarCpf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/negocio/impl/ValidarCredito.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/negocio/impl/ValidarCredito.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/negocio/impl/ValidarDadosCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/negocio/impl/ValidarDadosCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/negocio/impl/ValidarDependentes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/negocio/impl/ValidarDependentes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/negocio/impl/ValidarEndereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/negocio/impl/ValidarEndereco.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/persistencia/impl/ClienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistencia/impl/ClienteDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/persistencia/utils/ConnectionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistencia/utils/ConnectionFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/teste.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/negocio/impl/GerarLog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/negocio/impl/GerarLog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/negocio/impl/ValidarEndereco.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/negocio/impl/ValidarEndereco.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/persistencia/impl/ClienteDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/persistencia/impl/ClienteDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utils/ConnectionFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utils/ConnectionFactory.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/negocio/impl/GerarLog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/negocio/impl/GerarLog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/teste.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/negocio/impl/ValidarEndereco.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/negocio/impl/ValidarEndereco.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/persistencia/impl/ClienteDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/persistencia/impl/ClienteDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/utils/ConnectionFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII/WEB-INF/classes/utils/ConnectionFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/pedrobatista_engIII/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/pedrobatista_engIII/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,7 +221,7 @@
       <updated>1751483764994</updated>
       <workItem from="1751483770926" duration="903000" />
       <workItem from="1751484714706" duration="6936000" />
-      <workItem from="1751494427154" duration="1728000" />
+      <workItem from="1751494427154" duration="2624000" />
     </task>
     <servers />
   </component>
